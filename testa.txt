@@ -1,1 +1,3 @@
 test file added in release a version
+Added changes from test1 br
+Second commit to feature br
