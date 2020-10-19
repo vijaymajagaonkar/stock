@@ -1,0 +1,19 @@
+name: Sync to next release branch
+on:
+  push:
+    branches:
+      - 'release/b'
+
+jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Merge release -> master
+        uses: devmasx/merge-branch@v1.3.0
+        with:
+          type: now
+          label_name: 'meged in master'
+          target_branch: master
+          github_token: ${{ github.token }}
