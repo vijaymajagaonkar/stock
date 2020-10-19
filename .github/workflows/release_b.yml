@@ -10,10 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Merge release -> master
+      - name: Merge release/b -> master
         uses: devmasx/merge-branch@v1.3.0
         with:
           type: now
-          label_name: 'meged in master'
+          label_name: 'merged in master'
           target_branch: master
           github_token: ${{ github.token }}
