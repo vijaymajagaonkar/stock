@@ -5,9 +5,9 @@ on:
       types: colsed
       branches: 
          - "release/b"
-#    push:
-#     branches:
-#       - "release/b"
+   push:
+    branches:
+      - "release/b"
 jobs:
   merge-branch:
     if: github.event.pull_request.merged == true
