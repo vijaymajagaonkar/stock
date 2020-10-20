@@ -1,23 +1,4 @@
-name: Sync to next release branch
-# on:
-#   push:
-#     branches:
-#       - 'release/a'
-
-# jobs:
-#   merge-branch:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@'release/b'
-
-#       - name: Merge staging -> uat
-#         uses: devmasx/merge-branch@v1.3.0
-#         with:
-#           type: now
-#           label_name: 'meged in release/b'
-#           target_branch: release/b
-#           github_token: ${{ github.token }}
-
+name: Sync release/a branch to release/b
 on:
   push:
     branches:
@@ -26,11 +7,10 @@ jobs:
   merge-branch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - uses: everlytic/branch-merge@1.1.0
         with:
           github_token: ${{ github.token }}
           source_ref: ${{ github.ref }}
           target_branch: 'release/b'
           commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
-
