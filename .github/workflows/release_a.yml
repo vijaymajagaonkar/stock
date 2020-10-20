@@ -26,10 +26,7 @@ jobs:
   merge-branch:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-              git checkout release/b
-              git fetch
-      #- uses: actions/checkout@"release/b"
+      - uses: actions/checkout@master
       - uses: everlytic/branch-merge@1.1.0
         with:
           github_token: ${{ github.token }}
