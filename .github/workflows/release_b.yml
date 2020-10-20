@@ -1,17 +1,16 @@
 name: Sync release/b branch to master
 
 on:
-   workflow_run:
-    workflows: ["Sync release/a branch to release/b"]
-    branches:
-      - "release/b"
-    types: 
-      - completed
-   push:
-    branches:
-      - "release/b"
+   pull_request:
+      types: colsed
+      branches: 
+         - "release/b"
+#    push:
+#     branches:
+#       - "release/b"
 jobs:
   merge-branch:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
