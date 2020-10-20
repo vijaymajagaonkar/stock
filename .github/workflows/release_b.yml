@@ -1,16 +1,11 @@
 name: Sync release/b branch to master
 
 on:
-   pull_request:
-      types: colsed
-      branches: 
-         - "release/b"
    push:
     branches:
       - "release/b"
 jobs:
   merge-branch:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
