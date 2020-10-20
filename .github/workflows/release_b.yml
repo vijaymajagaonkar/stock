@@ -1,12 +1,6 @@
 name: Sync release/b branch to master
 
 on:
-   workflow_run:
-    workflows: ["Sync release/a branch to release/b"]
-    branches:
-      - "release/b"
-    types: 
-      - completed
    push:
     branches:
       - "release/b"
