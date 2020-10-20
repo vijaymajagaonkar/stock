@@ -7,3 +7,5 @@ A commit to feature br
 Second commit for auto merge
 
 This another test
+
+new commit
