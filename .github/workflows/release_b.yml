@@ -17,10 +17,16 @@ name: Sync release/b branch to master
 #           commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
 
 on: 
+  workflow_run:
+    workflows: ["Sync release/a branch to release/b"]
+    branches: 
+      - "release/a"
+    types:
+      - completed
   # To create pull requests.
   push:
      branches: 
-        - "release/*"
+        - "release/b"
   # To merge pull requests if not possible during the push run. Remove if `auto-merge` is `false`.
 #   pull_request_review:
 #   check_run:
