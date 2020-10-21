@@ -19,7 +19,9 @@ name: Sync release/b branch to master
 on: 
   # To create pull requests.
   push:
-     branches: "release/b"
+     branches: 
+        - "release/b"
+        - "refs/heads/release/a"
   # To merge pull requests if not possible during the push run. Remove if `auto-merge` is `false`.
 #   pull_request_review:
 #   check_run:
