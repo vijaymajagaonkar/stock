@@ -1,16 +1,18 @@
-name: Sync release/a branch to release/b
-on:
+name: Merge release/a to release/b
+on: 
   push:
-    branches:
-      - "release/a"
+     branches: 
+        - "release/a"
 jobs:
-  merge-branch:
-    runs-on: ubuntu-latest
+  build:
+    name: Gitflow
+    runs-on: ubuntu-16.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: everlytic/branch-merge@1.1.0
-        with:
-          github_token: ${{ github.token }}
-          source_ref: ${{ github.ref }}
-          target_branch: 'release/b'
-          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+    - uses: Logerfo/gitflow-action@0.0.4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        release: release/a
+        master: release/b
+        label: gitflow
+        auto-merge: true 
+        require-merge: true 
