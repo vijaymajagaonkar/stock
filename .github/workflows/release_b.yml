@@ -1,37 +1,14 @@
-name: Sync release/b branch to master
-
-# on:
-#    push:
-#     branches:
-#       - "release/b"
-# jobs:
-#   merge-branch:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: everlytic/branch-merge@1.1.0
-#         with:
-#           github_token: ${{ github.token }}
-#           source_ref: ${{ github.ref }}
-#           target_branch: 'master'
-#           commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
-
+name: Merge release/b branch to master
 on: 
   workflow_run:
-    workflows: ["Sync release/a branch to release/b"]
+    workflows: ["Merge release/a to release/b"]
     branches: 
       - "release/a"
     types:
       - completed
-  # To create pull requests.
   push:
      branches: 
         - "release/b"
-  # To merge pull requests if not possible during the push run. Remove if `auto-merge` is `false`.
-#   pull_request_review:
-#   check_run:
-#     types: [completed]
-
 jobs:
   build:
     name: Gitflow
@@ -39,9 +16,9 @@ jobs:
     steps:
     - uses: Logerfo/gitflow-action@0.0.4
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }} # The `GITHUB_TOKEN` secret.
-        release: release/b # The `release` branch.
-        master: master # The `master` branch.
-        label: gitflow # The pull request label.
-        auto-merge: true # If `true`, will try to automatically merge pull requests. Can also be set to `pull_request_review`, `check_run`, `push`, or a comma-separated combination of these values to only merge when handling the named events.
-        require-merge: true # If an attempted merge fails, the action is considered to have failed.
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        release: release/b
+        master: master
+        label: gitflow
+        auto-merge: true 
+        require-merge: true 
